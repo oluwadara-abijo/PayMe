@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pay Me</string>
+    <string name="card_number">Card Number</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="cvc">CVC</string>
+    <string name="pay_3000">Pay ₦3000</string>
+</resources>
