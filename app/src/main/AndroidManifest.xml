@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_test_40985c8c9f1eec8651b003e5a51fcf82eb07be6c"/>
     </application>
 
 </manifest>
