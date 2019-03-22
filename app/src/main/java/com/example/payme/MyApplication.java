@@ -1,3 +1,5 @@
+package com.example.payme;
+
 import android.annotation.SuppressLint;
 import android.app.Application;
 

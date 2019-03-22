@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/card_number_input"
+        android:id="@+id/card_number_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,60 +17,67 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/card_number_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_credit_card_black_24dp"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorAccent"
             android:hint="@string/card_number"
+            android:imeOptions="actionNext"
             android:inputType="number"
-            android:imeOptions="actionNext" />
+            android:text="4084084084084081" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/validity_input"
+        android:id="@+id/expiry_date_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@id/cvc_input"
-        app:layout_constraintStart_toStartOf="@id/card_number_input"
-        app:layout_constraintTop_toBottomOf="@id/card_number_input">
+        app:layout_constraintEnd_toStartOf="@id/cvv_layout"
+        app:layout_constraintStart_toStartOf="@id/card_number_layout"
+        app:layout_constraintTop_toBottomOf="@id/card_number_layout">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/expiry_date_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_date_range_black_24dp"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorAccent"
             android:hint="@string/mm_yy"
+            android:imeOptions="actionNext"
             android:inputType="number"
-            android:imeOptions="actionNext" />
+            android:text="12/20" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/cvc_input"
+        android:id="@+id/cvv_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/card_number_input"
-        app:layout_constraintStart_toEndOf="@id/validity_input"
-        app:layout_constraintTop_toTopOf="@id/validity_input">
+        app:layout_constraintEnd_toEndOf="@id/card_number_layout"
+        app:layout_constraintStart_toEndOf="@id/expiry_date_layout"
+        app:layout_constraintTop_toTopOf="@id/expiry_date_layout">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/cvv_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock_outline_black_24dp"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorAccent"
-            android:hint="@string/cvc"
-            android:inputType="number" />
+            android:hint="@string/cvv"
+            android:inputType="number"
+            android:text="408" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.button.MaterialButton
+        android:id="@+id/button_pay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
@@ -80,6 +87,6 @@
         app:cornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/validity_input" />
+        app:layout_constraintTop_toBottomOf="@id/expiry_date_layout" />
 
 </android.support.constraint.ConstraintLayout>

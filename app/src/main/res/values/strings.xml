@@ -2,6 +2,8 @@
     <string name="app_name">Pay Me</string>
     <string name="card_number">Card Number</string>
     <string name="mm_yy">MM/YY</string>
-    <string name="cvc">CVC</string>
+    <string name="cvv">CVV</string>
     <string name="pay_3000">Pay ₦3000</string>
+    <string name="valid_card">Card is valid</string>
+    <string name="invalid_card">Card not valid</string>
 </resources>
