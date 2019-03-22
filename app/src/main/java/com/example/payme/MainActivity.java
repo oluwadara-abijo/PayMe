@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import co.paystack.android.model.Card;
+import co.paystack.android.model.Charge;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,4 +56,5 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(payButton, R.string.invalid_card, Snackbar.LENGTH_LONG).show();
         }
     }
+
 }
