@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.payme.AppExecutors;
+import com.example.payme.data.model.InitializeResponse;
 import com.example.payme.data.network.NetworkDataSource;
 import com.example.payme.utilities.InjectorUtils;
 
@@ -37,9 +38,9 @@ public class Repository {
     }
 
     //Network related operations
-    public LiveData<String> getAccessCode(String amount, String email) {
+    public LiveData<InitializeResponse> getAccessCodes(String amount, String email) {
         NetworkDataSource networkDataSource = InjectorUtils.provideNetworkDataSource();
-        return networkDataSource.getAccessCode(amount, email);
+        return networkDataSource.getAccessCodes(amount, email);
     }
 
 

@@ -42,9 +42,17 @@ public class NetworkDataSource {
     }
 
     //Gets the access code from Paystack
-    public LiveData<String> getAccessCode(String amount, String email) {
 
-        final MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
+    /**
+     * Prompts backend to initialize a transaction using Paystack's initialize endpoint,
+     * backend returns access_code
+     * @param amount Amount in kobo, required to initialize transaction
+     * @param email Customer's email address, required to initialize transaction
+     * @return The response from initialize transaction which contains the access code and reference
+     */
+    public LiveData<InitializeResponse> getAccessCodes(String amount, String email) {
+
+        final MutableLiveData<InitializeResponse> mutableLiveData = new MutableLiveData<>();
 
         mExecutors.networkIO().execute(() -> {
             PaystackInterface mPaystackInterface = PaystackClient.getClient();
@@ -53,7 +61,7 @@ public class NetworkDataSource {
                 @Override
                 public void onResponse(@NonNull Call<InitializeResponse> call, @NonNull Response<InitializeResponse> response) {
                     if (response.body() != null) {
-                        mutableLiveData.postValue(response.body().getData().getAccess_code());
+                        mutableLiveData.postValue(response.body());
                     }
                     Log.d(LOG_TAG, String.valueOf(response));
                 }

@@ -25,8 +25,7 @@
             android:drawableTint="@color/colorAccent"
             android:hint="@string/card_number"
             android:imeOptions="actionNext"
-            android:inputType="number"
-            android:text="4084084084084081" />
+            android:inputType="number"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -71,8 +70,7 @@
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorAccent"
             android:hint="@string/cvv"
-            android:inputType="number"
-            android:text="408" />
+            android:inputType="number"/>
 
     </android.support.design.widget.TextInputLayout>
 

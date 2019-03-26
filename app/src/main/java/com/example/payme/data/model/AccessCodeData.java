@@ -48,4 +48,8 @@ public class AccessCodeData implements Parcelable {
     public String getAccess_code() {
         return access_code;
     }
+
+    public String getReference() {
+        return reference;
+    }
 }
