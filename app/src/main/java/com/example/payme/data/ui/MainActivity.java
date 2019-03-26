@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private String mAccessCode;
     private String mReference;
 
+    private String transactionStatus;
     private Card mCard;
 
     @Override
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 //        bankAuthorisation();
 
 
-
     }
 
     private void noValidation() {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         cvv_input.setText("081");
     }
 
-    private void pinPhoneOtp () {
+    private void pinPhoneOtp() {
         //PIN: 0000
         //Phone: If less than 10 numeric characters, Transaction will fail.
         //OTP: 123456
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         cvv_input.setText("884");
     }
 
-    private void bankAuthorisation () {
+    private void bankAuthorisation() {
         card_number_input.setText("4084080000000409");
         cvv_input.setText("000");
     }
@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
             });
         } else {
             Snackbar.make(payButton, "No internet connection", Snackbar.LENGTH_LONG).show();
-
         }
     }
 
@@ -156,25 +155,39 @@ public class MainActivity extends AppCompatActivity {
         charge.setAmount(2000);
         charge.setEmail("oluwadara.abijo@gmail.com");
 
-        PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
-            @Override
-            public void onSuccess(Transaction transaction) {
-                Snackbar.make(payButton, "Transaction successful", Snackbar.LENGTH_LONG).show();
-            }
+        if (isNetworkAvailable()) {
+            PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
+                @Override
+                public void onSuccess(Transaction transaction) {
+                    Snackbar.make(payButton, "Transaction successful", Snackbar.LENGTH_LONG).show();
+                    showLoading();
+                    mViewModel.verifyTransaction(mReference).observe(MainActivity.this, verificationResponse -> {
+                        if (verificationResponse != null) {
+                            showData();
+                            transactionStatus = verificationResponse.getmData().getStatus();
+                            Snackbar.make(payButton, transactionStatus, Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            Snackbar.make(payButton, "Transaction not verified", Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+                }
 
-            @Override
-            public void beforeValidate(Transaction transaction) {
-                Snackbar.make(payButton, "Before validate", Snackbar.LENGTH_LONG).show();
+                @Override
+                public void beforeValidate(Transaction transaction) {
+                    Snackbar.make(payButton, "Before validate", Snackbar.LENGTH_LONG).show();
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable error, Transaction transaction) {
-                Log.d(LOG_TAG, error.getMessage());
-                Snackbar.make(payButton, "Transaction error", Snackbar.LENGTH_LONG).show();
+                @Override
+                public void onError(Throwable error, Transaction transaction) {
+                    Log.d(LOG_TAG, error.getMessage());
+                    Snackbar.make(payButton, "Transaction error", Snackbar.LENGTH_LONG).show();
 
-            }
-        });
+                }
+            });
+        } else {
+            Snackbar.make(payButton, "No internet connection", Snackbar.LENGTH_LONG).show();
+        }
     }
 
     private boolean isNetworkAvailable() {

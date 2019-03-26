@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.example.payme.data.Repository;
 import com.example.payme.data.model.InitializeResponse;
+import com.example.payme.data.model.VerificationResponse;
 
 class MainActivityViewModel extends ViewModel {
 
@@ -17,4 +18,9 @@ class MainActivityViewModel extends ViewModel {
     LiveData<InitializeResponse> getAccessCode(String amount, String email) {
         return mRepository.getAccessCodes(amount, email);
     }
+
+    LiveData<VerificationResponse> verifyTransaction(String reference) {
+        return mRepository.verifyTransaction(reference);
+    }
+
 }
